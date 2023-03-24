@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import {Box,Center,Grid,GridItem,Heading,
+import { useNavigate, useParams } from 'react-router-dom'
+import {Box,
+    Center,
+    Heading,
     Modal,
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    ModalFooter,
     ModalBody,
     ModalCloseButton,
     Button,
     useDisclosure,
     FormLabel,
     Input,
-    FormControl,
     Select,
     Table,} from "@chakra-ui/react"
 import axios from "axios"
@@ -34,6 +34,7 @@ const SingleSprint = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
+    const navigate=useNavigate()
 
     let id=params.id
 
@@ -67,7 +68,10 @@ const SingleSprint = () => {
             </Heading>
         </Center>
         <>
-        <Button onClick={onOpen}>Add Task</Button>
+        <Button colorScheme="facebook" onClick={()=>navigate("/")}>Home</Button>
+        <br />
+        <br />
+        <Button onClick={onOpen} colorScheme="blackAlpha">Add Task</Button>
 
         <Modal
             initialFocusRef={initialRef}
@@ -97,17 +101,27 @@ const SingleSprint = () => {
             </ModalContent>
         </Modal>
         </>
-        <Table mt="40px">
-            <tr>
-                <td>Task Title</td>
-                <td>Status</td>
-                <td>Assignee</td>
-                <td>Delete</td>
-            </tr>
+        <table style={{
+            width:"80%",
+            margin:"auto",
+            marginTop:"20px",
+            border:"2px solid black"
+        }}>
+            <thead>
+                <tr>
+                    <th>Task Title</th>
+                    <th>Status</th>
+                    <th>Assignee</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
             {data.map((dat)=>(
-                <TaskMap key={dat._id} title={dat.title} status={dat.status} assignee={dat.assignee}/>
-            ))}
-        </Table>
+                <TaskMap key={dat._id} id={dat._id} title={dat.title} status={dat.status} assignee={dat.assignee}/>
+                ))}
+            </tbody>
+        </table>
     </Box>
   )
 }

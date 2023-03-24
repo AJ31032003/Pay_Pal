@@ -4,14 +4,12 @@ import {Box,Center,Grid,GridItem,Heading,
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    ModalFooter,
     ModalBody,
     ModalCloseButton,
     Button,
     useDisclosure,
     FormLabel,
-    Input,
-    FormControl,} from "@chakra-ui/react"
+    Input} from "@chakra-ui/react"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 
@@ -67,7 +65,7 @@ const Home = () => {
             </Heading>
         </Center>
         <>
-        <Button onClick={onOpen}>Add Sprint</Button>
+        <Button onClick={onOpen} colorScheme="blackAlpha">Add Sprint</Button>
 
         <Modal
             initialFocusRef={initialRef}
@@ -96,7 +94,7 @@ const Home = () => {
                     <GridItem key={dat._id}>
                         <Box boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                             <Heading>{dat.name}</Heading>    
-                            <Button colorScheme='blue' mr={3} onClick={()=>navigate(`/${dat._id}`)}>Open</Button>
+                            <Button colorScheme='green' mr={3} onClick={()=>navigate(`/${dat._id}`)}>Open</Button>
                             <Button colorScheme='blue' mr={3} onClick={()=>handledelete(dat._id)}>Delete</Button>
                         </Box>
                     </GridItem>
