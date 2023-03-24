@@ -24,6 +24,7 @@ const TaskMap = ({title,status,assignee,id}) => {
         await axios.delete(`https://real-jade-clownfish-sock.cyclic.app/task/${e}`).then((res)=>{
             if(res.data==="Deleted."){
                 alert("Deleted.")
+                window.location.reload()
             }
         })
     }
